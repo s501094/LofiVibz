@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lofi Music Stream</title>
+
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Lofi Music Stream">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lofivibz.com">
+    <meta property="og:image" content="https://lofivibz.com/og-thumbnail.jpg">
+    <meta property="og:description" content="Chill lofi music to relax and study. Stream anytime from Lofi Music Stream!">
+    <meta property="og:site_name" content="Lofi Music Stream">
+
+    <!-- Twitter Card Meta Tags for Sharing on Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lofi Music Stream">
+    <meta name="twitter:description" content="Chill lofi music to relax and study. Stream anytime from Lofi Music Stream!">
+    <meta name="twitter:image" content="https://lofivibz.com/og-thumbnail.jpg">
+
+    <!-- Link to your CSS and other assets -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="page-title">Lofi Music Stream</h1>
+    <!-- Menu Button -->
+    <button id="menu-toggle" class="menu-button">☰</button>
+    <!-- Sliding Menu -->
+    <div id="side-menu" class="side-menu">
+        <button id="menu-close" class="menu-close">×</button>
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="#" id="playlist-link">Playlist</a></li>
+            <li><a href="#" id="about-link">About</a></li>
+            <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+            <li><a href="https://skvibz.com" target="_blank">Merchandise</a></li>
+        </ul>
+    </div>
+    <div id="video-titleContainer">
+        <span id="video-title" class="scrolling-text">Now Playing...</span>
+    </div>
+    <div id="video-background">
+        <div id="player"></div>
+    </div>
+    <div id="controls">
+        <button id="prev" class="control-button">Previous</button>
+        <button id="next" class="control-button">Next</button>
+        <button id="play" class="control-button">Play</button>
+        <button id="pause" class="control-button">Pause</button>
+        <button id="stop" class="control-button">Stop</button>
+    </div>
+    <div id="volume">
+        <input type="range" id="volume-control" min="0" max="100" value="100">
+        <div id="volume-buttons">
+            <button id="mute" class="control-button">Mute</button>
+            <button id="unmute" class="control-button">Unmute</button>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="app.js?v=1.0.7" defer></script>
+    <!-- Inline script for menu toggle to ensure it works -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuClose = document.getElementById('menu-close');
+            const sideMenu = document.getElementById('side-menu');
+
+            console.log('Menu Toggle:', menuToggle);
+            console.log('Menu Close:', menuClose);
+            console.log('Side Menu:', sideMenu);
+
+            if (menuToggle && sideMenu) {
+                menuToggle.addEventListener('click', () => {
+                    console.log('Menu toggle clicked');
+                    sideMenu.classList.add('open');
+                });
+            } else {
+                console.error('Menu toggle or side menu not found. Check if elements exist in HTML.');
+            }
+
+            if (menuClose && sideMenu) {
+                menuClose.addEventListener('click', () => {
+                    console.log('Menu close clicked');
+                    sideMenu.classList.remove('open');
+                });
+            } else {
+                console.error('Menu close or side menu not found. Check if elements exist in HTML.');
+            }
+        });
+    </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91c850a85ab5afa8',t:'MTc0MTMzMTg2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+<footer>
+    <p id="footer">© 2024 Lofi Music Stream - All rights reserved - Designed by skrody</p>
+</footer>
+</html>

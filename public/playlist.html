@@ -1,0 +1,102 @@
+<!-- public/playlist.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Today's Playlist - Lo-Fi Vibz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #007bff;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    #playlist-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .video-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .video-item img {
+      width: 120px;
+      height: 90px;
+      margin-right: 15px;
+      border-radius: 3px;
+    }
+    .video-item a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .video-item a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Today's Playlist</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="playlist.html">Today's Playlist</a>
+  </nav>
+  <div id="playlist-container"></div>
+
+  <script>
+    async function fetchPlaylist() {
+      try {
+        const response = await fetch('/api/todays-playlist');
+        if (!response.ok) {
+          throw new Error('Failed to fetch playlist');
+        }
+        const data = await response.json();
+        displayPlaylist(data.videos);
+      } catch (error) {
+        console.error('Error fetching playlist:', error);
+        document.getElementById('playlist-container').innerHTML = '<p>Error loading playlist. Please try again later.</p>';
+      }
+    }
+
+    function displayPlaylist(videos) {
+      const container = document.getElementById('playlist-container');
+      container.innerHTML = ''; // Clear existing content
+      videos.forEach(video => {
+        const videoElement = document.createElement('div');
+        videoElement.className = 'video-item';
+        videoElement.innerHTML = `
+          <img src="${video.thumbnail}" alt="${video.title}">
+          <a href="https://www.youtube.com/watch?v=${video.videoId}" target="_blank">${video.title}</a>
+        `;
+        container.appendChild(videoElement);
+      });
+    }
+
+    // Fetch playlist on page load
+    fetchPlaylist();
+  </script>
+</body>
+</html>
